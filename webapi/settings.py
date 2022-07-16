@@ -32,8 +32,13 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
 
+    # Apps created
+    'projects',
+
+    # Libraries installed
     'rest_framework',
 
+    # Default django apps
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
