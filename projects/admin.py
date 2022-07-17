@@ -1,10 +1,10 @@
 from django.contrib import admin
-from projects.models import Post
+from projects.models import Project
 
 # Register your models here.
 
-class PostAdmin(admin.ModelAdmin):
+class ProjectAdmin(admin.ModelAdmin):
     list_display = ('title', 'created')
     date_hierarchy = 'created'
 
-admin.site.register(Post, PostAdmin)
+admin.site.register(Project, ProjectAdmin)
