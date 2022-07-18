@@ -7,3 +7,9 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+
+class ResumePostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Project
+        fields = ('title', 'description', 'created')
