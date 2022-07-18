@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 # Create your views here.
 
-class ListPost(generics.ListAPIView):
+class ListPost(generics.ListCreateAPIView):
 
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
