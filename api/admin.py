@@ -1,5 +1,5 @@
 from django.contrib import admin
-from api.models import Project, Post
+from api.models import Project, Post, Tag
 
 # Register your models here.
 
@@ -13,3 +13,4 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Project, ProjectAdmin)
 admin.site.register(Post, PostAdmin)
+admin.site.register(Tag)
