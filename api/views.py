@@ -21,17 +21,21 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         return [permission() for permission in permission_classes]
 
-class ListRetrievePost(
-    viewsets.GenericViewSet,
-    mixins.ListModelMixin,
-    mixins.RetrieveModelMixin,
-):
+class ListRetrievePost(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+    """
+    API to send post's summary (title, description and date created). It is sent
+    with pagination so that the posts are sent in parts.
+    """
 
     queryset = Post.objects.all()
     serializer_class = ResumePostSerializer
     permission_classes = [AllowAny,]
 
 class HomeAPIView(views.APIView):
+    """
+    API that send data to home page in frontend.
+    It's sent some projects and posts.
+    """
 
     def get(self, request, format=None):
 
