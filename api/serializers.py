@@ -11,7 +11,7 @@ class ProjectSerializer(serializers.ModelSerializer):
         model = Project
         fields = '__all__'
 
-class ResumePostSerializer(serializers.ModelSerializer):
+class PostSummarySerializer(serializers.ModelSerializer):
     """
     Serializing just some fields from Post serializer because this is used
     when we want to show just a post summary.

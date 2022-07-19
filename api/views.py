@@ -1,5 +1,5 @@
 from api.models import Project, Post
-from api.serializers import ProjectSerializer, ResumePostSerializer
+from api.serializers import ProjectSerializer, PostSummarySerializer
 
 from rest_framework import status, viewsets, mixins, views
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -25,14 +25,14 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         return [permission() for permission in permission_classes]
 
-class ListRetrievePost(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+class ListRetrievePostSummary(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
     """
     API to send post's summary (title, description and date created). It is sent
     with pagination so that the posts are sent in parts.
     """
 
     queryset = Post.objects.all()
-    serializer_class = ResumePostSerializer
+    serializer_class = PostSummarySerializer
     permission_classes = [AllowAny,]
 
 class HomeAPIView(views.APIView):

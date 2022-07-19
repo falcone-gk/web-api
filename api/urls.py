@@ -5,7 +5,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 router.register(r'projects', views.ProjectViewSet, basename="projects")
-router.register(r'posts-summary', views.ListRetrievePost, basename="posts-summary")
+router.register(r'posts-summary', views.ListRetrievePostSummary, basename="posts-summary")
 
 urlpatterns = [
     path('', include(router.urls)),
