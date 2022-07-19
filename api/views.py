@@ -25,7 +25,7 @@ class ProjectViewSet(viewsets.ModelViewSet):
 
         return [permission() for permission in permission_classes]
 
-class ListRetrievePostSummary(viewsets.GenericViewSet, mixins.ListModelMixin, mixins.RetrieveModelMixin):
+class ListPostSummary(viewsets.GenericViewSet, mixins.ListModelMixin):
     """
     API to send post's summary (title, description and date created). It is sent
     with pagination so that the posts are sent in parts.
