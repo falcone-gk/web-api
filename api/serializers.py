@@ -1,6 +1,5 @@
-from dataclasses import fields
 from rest_framework import serializers
-from api.models import Project
+from api.models import Project, Post
 
 class ProjectSerializer(serializers.ModelSerializer):
 
@@ -11,5 +10,5 @@ class ProjectSerializer(serializers.ModelSerializer):
 class ResumePostSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = Project
+        model = Post
         fields = ('title', 'description', 'created')
