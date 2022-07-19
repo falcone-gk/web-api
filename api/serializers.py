@@ -1,3 +1,4 @@
+from pyexpat import model
 from rest_framework import serializers
 from api.models import Project, Post
 
@@ -19,3 +20,12 @@ class ResumePostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = ('title', 'description', 'created')
+
+class PostSerializer(serializers.ModelSerializer):
+    """
+    Serializing the entire Post model. This is used to show a post.
+    """
+
+    class Meta:
+        model = Post
+        fields = '__all__'
