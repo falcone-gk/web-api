@@ -42,6 +42,11 @@ class RetrieveCreateUpdateDelete(
     mixins.UpdateModelMixin,
     mixins.DestroyModelMixin):
 
+    """
+    API that get, create, edit and delete a post. The las three can do it just
+    an admin.
+    """
+
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
