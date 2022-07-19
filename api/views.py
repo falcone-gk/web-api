@@ -1,5 +1,5 @@
 from api.models import Project, Post
-from api.serializers import ProjectSerializer, PostSummarySerializer
+from api.serializers import ProjectSerializer, PostSummarySerializer, PostSerializer
 
 from rest_framework import status, viewsets, mixins, views
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -35,6 +35,25 @@ class ListPostSummary(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = PostSummarySerializer
     permission_classes = [AllowAny,]
 
+class RetrieveCreateUpdateDelete(
+    viewsets.GenericViewSet,
+    mixins.RetrieveModelMixin,
+    mixins.CreateModelMixin,
+    mixins.UpdateModelMixin,
+    mixins.DestroyModelMixin):
+
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
+
+    def get_permissions(self):
+
+        if self.action == 'retrieve':
+            permission_classes = [AllowAny]
+        else:
+            permission_classes = [IsAdminUser]
+
+        return [permission() for permission in permission_classes]
+
 class HomeAPIView(views.APIView):
     """
     API that send data to home page in frontend.
@@ -47,7 +66,7 @@ class HomeAPIView(views.APIView):
         posts = Post.objects.all().order_by('-id')[:8]
 
         serializer_project = ProjectSerializer(projects, many=True)
-        serializer_post = ResumePostSerializer(posts, many=True)
+        serializer_post = PostSummarySerializer(posts, many=True)
 
         json_data = {
             'summary_project': serializer_project.data,
