@@ -8,6 +8,10 @@ from rest_framework.response import Response
 # Create your views here.
 
 class ProjectViewSet(viewsets.ModelViewSet):
+    """
+    API to show the projects that I made. In this case the only person who can
+    create and edit a Project summary is an Admin.
+    """
 
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
