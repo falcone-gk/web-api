@@ -1,6 +1,11 @@
-from pyexpat import model
 from rest_framework import serializers
-from api.models import Project, Post
+from api.models import Project, Post, Tag
+
+class TagSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Tag
+        fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):
     """

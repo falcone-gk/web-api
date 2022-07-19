@@ -1,5 +1,5 @@
-from api.models import Project, Post
-from api.serializers import ProjectSerializer, PostSummarySerializer, PostSerializer
+from api.models import Project, Post, Tag
+from api.serializers import ProjectSerializer, PostSummarySerializer, PostSerializer, TagSerializer
 
 from rest_framework import status, viewsets, mixins, views
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -69,12 +69,15 @@ class HomeAPIView(views.APIView):
 
         projects = Project.objects.all().order_by('-id')[:8]
         posts = Post.objects.all().order_by('-id')[:8]
+        tags = Tag.objects.all()
 
         serializer_project = ProjectSerializer(projects, many=True)
+        serializer_tags = TagSerializer(tags, many=True)
         serializer_post = PostSummarySerializer(posts, many=True)
 
         json_data = {
             'summary_project': serializer_project.data,
+            'tags': serializer_tags.data,
             'summary_post': serializer_post.data
         }
 
