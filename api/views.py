@@ -35,7 +35,7 @@ class ListPostSummary(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = PostSummarySerializer
     permission_classes = [AllowAny,]
 
-class RetrieveCreateUpdateDelete(
+class RetrieveCreateUpdateDeletePost(
     viewsets.GenericViewSet,
     mixins.RetrieveModelMixin,
     mixins.CreateModelMixin,
