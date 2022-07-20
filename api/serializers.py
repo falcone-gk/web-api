@@ -10,7 +10,8 @@ class TagSerializer(serializers.ModelSerializer):
 
 class GetProjectSerializer(serializers.ModelSerializer):
     """
-    Serializing the entire Project model.
+    Serializing the entire Project model. This serializer will be used to just show
+    when user do a get request.
     """
 
     tags = TagSerializer(many=True)
@@ -21,7 +22,8 @@ class GetProjectSerializer(serializers.ModelSerializer):
 
 class ProjectSerializer(serializers.ModelSerializer):
     """
-    Serializing the entire Project model.
+    Serializing the entire Project model. This serializer is used when an admin
+    wants to create, update or delete a Project.
     """
 
     class Meta:
