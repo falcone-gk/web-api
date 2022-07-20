@@ -14,7 +14,7 @@ class Project(models.Model):
     title = models.CharField(max_length=60)
     description = models.TextField()
     created = models.DateField(auto_now_add=True)
-    tag = models.ManyToManyField(Tag)
+    tags = models.ManyToManyField(Tag)
 
     def __str__(self):
         return self.title
