@@ -1,3 +1,4 @@
+from enum import unique
 from rest_framework import serializers
 from api.models import Project, Post, Tag
 
@@ -5,6 +6,17 @@ class TagSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Tag
+        fields = '__all__'
+
+class GetProjectSerializer(serializers.ModelSerializer):
+    """
+    Serializing the entire Project model.
+    """
+
+    tags = TagSerializer(many=True)
+
+    class Meta:
+        model = Project
         fields = '__all__'
 
 class ProjectSerializer(serializers.ModelSerializer):

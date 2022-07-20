@@ -1,5 +1,5 @@
 from api.models import Project, Post, Tag
-from api.serializers import ProjectSerializer, PostSummarySerializer, PostSerializer, TagSerializer
+from api.serializers import ProjectSerializer, GetProjectSerializer, PostSummarySerializer, PostSerializer, TagSerializer
 
 from rest_framework import status, viewsets, mixins, views
 from rest_framework.permissions import AllowAny, IsAdminUser
@@ -14,7 +14,6 @@ class ProjectViewSet(viewsets.ModelViewSet):
     """
 
     queryset = Project.objects.all()
-    serializer_class = ProjectSerializer
 
     def get_permissions(self):
 
@@ -24,6 +23,13 @@ class ProjectViewSet(viewsets.ModelViewSet):
             permission_classes = [IsAdminUser]
 
         return [permission() for permission in permission_classes]
+
+    def get_serializer_class(self):
+
+        if self.action == 'list' or self.action == 'retrieve':
+            return GetProjectSerializer
+        else:
+            return ProjectSerializer
 
 class ListPostSummary(viewsets.GenericViewSet, mixins.ListModelMixin):
     """
@@ -69,15 +75,12 @@ class HomeAPIView(views.APIView):
 
         projects = Project.objects.all().order_by('-id')[:8]
         posts = Post.objects.all().order_by('-id')[:8]
-        tags = Tag.objects.all()
 
-        serializer_project = ProjectSerializer(projects, many=True)
-        serializer_tags = TagSerializer(tags, many=True)
+        serializer_project = GetProjectSerializer(projects, many=True)
         serializer_post = PostSummarySerializer(posts, many=True)
 
         json_data = {
             'summary_project': serializer_project.data,
-            'tags': serializer_tags.data,
             'summary_post': serializer_post.data
         }
 
