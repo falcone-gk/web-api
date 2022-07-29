@@ -15,6 +15,8 @@ class Project(models.Model):
     description = models.TextField()
     created = models.DateField(auto_now_add=True)
     tags = models.ManyToManyField(Tag)
+    source_code = models.URLField(max_length=200, blank=True)
+    source_app = models.URLField(max_length=200, blank=True)
 
     def __str__(self):
         return self.title
