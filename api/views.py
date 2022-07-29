@@ -1,11 +1,20 @@
 from api.models import Project, Post, Tag
 from api.serializers import ProjectSerializer, GetProjectSerializer, PostSummarySerializer, PostSerializer, TagSerializer
 
-from rest_framework import status, viewsets, mixins, views
+from rest_framework import status, viewsets, mixins, views, generics
 from rest_framework.permissions import AllowAny, IsAdminUser
 from rest_framework.response import Response
 
 # Create your views here.
+
+class ListTagAPIView(views.APIView):
+
+    def get(self, request, format=None):
+
+        tags = Tag.objects.all()
+        serializer = TagSerializer(tags, many=True)
+
+        return Response(serializer.data, status=status.HTTP_200_OK)
 
 class ProjectViewSet(viewsets.ModelViewSet):
     """

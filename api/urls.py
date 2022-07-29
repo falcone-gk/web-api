@@ -11,4 +11,5 @@ router.register(r'posts', views.RetrieveCreateUpdateDeletePost, basename="posts"
 urlpatterns = [
     path('', include(router.urls)),
     path('home/', views.HomeAPIView.as_view(), name='api-home'),
+    path('list-tags', views.ListTagAPIView.as_view(), name='tag-list'),
 ]
